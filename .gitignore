@@ -1,2 +1,3 @@
+# Ignoring all hidden files and folders except for .gitignore
 .*
 !.gitignore
