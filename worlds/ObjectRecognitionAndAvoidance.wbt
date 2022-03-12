@@ -1,0 +1,398 @@
+#VRML_SIM R2021b utf8
+WorldInfo {
+  coordinateSystem "NUE"
+}
+Viewpoint {
+  orientation -0.712538164404495 -0.681553976148599 -0.16665395843815933 0.6959412280469618
+  position -1.813360244423662 2.3665185209603616 3.8264594536170944
+}
+Background {
+  skyColor [
+    0.407843 0.407843 0.407843
+  ]
+  luminosity 0.1
+}
+DirectionalLight {
+  direction 0 -2 0
+  intensity 2
+  castShadows TRUE
+}
+RectangleArena {
+  floorSize 3 3
+  wallHeight 0.2
+}
+DEF Block Solid {
+  translation -0.81 0.1 0.08
+  children [
+    DEF box Shape {
+      appearance PBRAppearance {
+        baseColor 1 0.666667 0
+        metalness 0.5
+      }
+      geometry Box {
+        size 0.2 0.2 0.2
+      }
+    }
+  ]
+  boundingObject USE box
+  physics Physics {
+  }
+  recognitionColors [
+    1 0 0
+  ]
+}
+DEF Cone Solid {
+  translation 0.15 0.15 -0.81
+  children [
+    DEF cone Shape {
+      appearance PBRAppearance {
+        baseColor 0.407843 0.407843 0.407843
+        metalness 0.5
+      }
+      geometry Cone {
+        bottomRadius 0.1
+        height 0.3
+      }
+    }
+  ]
+  name "Cone"
+  boundingObject Group {
+    children [
+      Transform {
+        translation 0 -0.1 0
+        children [
+          Cylinder {
+            height 0.1
+            radius 0.1
+          }
+        ]
+      }
+      Transform {
+        translation 0 -0.01 0
+        children [
+          Cylinder {
+            height 0.08
+            radius 0.07
+          }
+        ]
+      }
+      Transform {
+        translation 0 0.09 0
+        children [
+          Cylinder {
+            height 0.12
+            radius 0.05
+          }
+        ]
+      }
+    ]
+  }
+  physics Physics {
+  }
+  recognitionColors [
+    1 0 0
+  ]
+}
+DEF Capsule Solid {
+  translation 1.07 0.08 -0.29
+  rotation 1 0 0 -1.5707953071795862
+  children [
+    DEF capsule Shape {
+      appearance PBRAppearance {
+        baseColor 1 0 1
+        metalness 0.5
+      }
+      geometry Capsule {
+        height 0.2
+        radius 0.08
+      }
+    }
+  ]
+  name "Capsule"
+  boundingObject USE capsule
+  physics Physics {
+  }
+  recognitionColors [
+    1 0 0
+  ]
+}
+DEF Cylinder Solid {
+  translation 0.82 0.1 0.92
+  children [
+    DEF cylinder Shape {
+      appearance PBRAppearance {
+        baseColor 0 1 0.498039
+        metalness 0.5
+      }
+      geometry Cylinder {
+        height 0.2
+        radius 0.08
+      }
+    }
+  ]
+  name "Cylinder"
+  boundingObject USE cylinder
+  physics Physics {
+  }
+  recognitionColors [
+    1 0 0
+  ]
+}
+DEF Sphere Solid {
+  translation -0.02 0.1 0.82
+  children [
+    DEF sphere Shape {
+      appearance PBRAppearance {
+        baseColor 0 0.666667 1
+        metalness 0.5
+      }
+      geometry Sphere {
+        radius 0.1
+        subdivision 2
+      }
+    }
+  ]
+  name "Sphere"
+  boundingObject USE sphere
+  physics Physics {
+  }
+  recognitionColors [
+    1 0 0
+  ]
+}
+Robot {
+  translation 0 0.07 -0.05
+  children [
+    DistanceSensor {
+      translation -0.06 0 0.25
+      rotation 0 1 0 -2.3561953071795863
+      children [
+        DEF Dis_Sense Shape {
+          appearance PBRAppearance {
+            baseColor 0 0.333333 0
+            metalness 0.2
+          }
+          geometry Box {
+            size 0.01 0.01 0.02
+          }
+        }
+      ]
+      name "distanceSensorRight"
+      boundingObject USE Dis_Sense
+      physics Physics {
+      }
+    }
+    DistanceSensor {
+      translation 0.06 0 0.25
+      rotation 0 -1 0 0.785401
+      children [
+        DEF Dis_Sense Shape {
+          appearance PBRAppearance {
+            baseColor 0 0.333333 0
+            metalness 0.2
+          }
+          geometry Box {
+            size 0.01 0.01 0.02
+          }
+        }
+      ]
+      name "distanceSensorLeft"
+      boundingObject USE Dis_Sense
+      physics Physics {
+      }
+    }
+    GPS {
+      translation 0 0.015 0
+      children [
+        DEF gps Shape {
+          appearance PBRAppearance {
+            baseColor 0 0.666667 1
+            metalness 0.3
+          }
+          geometry Cylinder {
+            height 0.01
+            radius 0.01
+          }
+        }
+      ]
+      boundingObject USE gps
+      physics Physics {
+      }
+    }
+    Camera {
+      translation 0 0.02 0.23
+      rotation 0 1 0 3.14159
+      children [
+        DEF Cam Shape {
+          appearance PBRAppearance {
+            baseColor 0.333333 0 1
+            metalness 0.5
+          }
+          geometry Box {
+            size 0.04 0.04 0.02
+          }
+        }
+      ]
+      name "cam"
+      boundingObject USE Cam
+      physics Physics {
+      }
+      width 640
+      height 640
+      recognition Recognition {
+        frameThickness 5
+      }
+    }
+    DistanceSensor {
+      translation 0 0 0.25
+      rotation 0 1 0 -1.5707953071795862
+      children [
+        DEF Dis_Sense Shape {
+          appearance PBRAppearance {
+            baseColor 0 0.333333 0
+            metalness 0.2
+          }
+          geometry Box {
+            size 0.01 0.01 0.02
+          }
+        }
+      ]
+      name "distanceSensorMiddle"
+      boundingObject USE Dis_Sense
+      physics Physics {
+      }
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        anchor -0.1 0 0.15
+      }
+      device [
+        RotationalMotor {
+          name "wheelFrontRight"
+        }
+      ]
+      endPoint Solid {
+        translation -0.09999941878893964 5.444693622582404e-06 0.15000305719121101
+        rotation -0.12886141729471556 0.12827761927076536 -0.9833308637112036 4.6954139828888
+        children [
+          DEF wheel_front_right Shape {
+            appearance PBRAppearance {
+              baseColor 0.666667 0 0
+              metalness 0.2
+            }
+            geometry Cylinder {
+              height 0.05
+              radius 0.07
+            }
+          }
+        ]
+        name "solid(3)"
+        boundingObject USE wheel_front_right
+        physics Physics {
+        }
+      }
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        anchor -0.1 0 -0.15
+      }
+      device [
+        RotationalMotor {
+          name "wheelBackRight"
+        }
+      ]
+      endPoint Solid {
+        translation -0.10003414723935797 1.3501426525742986e-05 -0.15002850265242632
+        rotation -0.12886125828844391 0.12827814158933218 -0.9833308164105843 4.695414499458593
+        children [
+          DEF wheel_back_right Shape {
+            appearance PBRAppearance {
+              baseColor 0.666667 0 0
+              metalness 0.2
+            }
+            geometry Cylinder {
+              height 0.05
+              radius 0.07
+            }
+          }
+        ]
+        boundingObject USE wheel_back_right
+        physics Physics {
+        }
+      }
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        anchor 0.1 0 -0.15
+      }
+      device [
+        RotationalMotor {
+          name "wheelBackLeft"
+        }
+      ]
+      endPoint Solid {
+        translation 0.09999909349842911 5.115712574894004e-06 -0.15000363111409823
+        rotation 0.12829830463306338 -0.12888318525671522 -0.983325312186341 4.69573337992707
+        children [
+          DEF wheel_back_left Shape {
+            appearance PBRAppearance {
+              baseColor 0.666667 0 0
+              metalness 0.2
+            }
+            geometry Cylinder {
+              height 0.05
+              radius 0.07
+            }
+          }
+        ]
+        name "solid(2)"
+        boundingObject USE wheel_back_left
+        physics Physics {
+        }
+      }
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        anchor 0.1 0 0.15
+      }
+      device [
+        RotationalMotor {
+          name "wheelFrontLeft"
+        }
+      ]
+      endPoint Solid {
+        translation 0.10003415985354151 1.3592733933581754e-05 0.15002817437820268
+        rotation 0.12829875450524483 -0.12888294382448873 -0.9833252851338343 4.695732779235767
+        children [
+          DEF wheel_front_left Shape {
+            appearance PBRAppearance {
+              baseColor 0.666667 0 0
+              metalness 0.2
+            }
+            geometry Cylinder {
+              height 0.05
+              radius 0.07
+            }
+          }
+        ]
+        name "solid(1)"
+        boundingObject USE wheel_front_left
+        physics Physics {
+        }
+      }
+    }
+    DEF body Shape {
+      appearance PBRAppearance {
+        baseColor 0.666667 0.333333 0
+        metalness 0.3
+      }
+      geometry Box {
+        size 0.15 0.02 0.5
+      }
+    }
+  ]
+  boundingObject USE body
+  physics Physics {
+  }
+  controller "Robot_Controller"
+}
